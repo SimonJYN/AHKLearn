@@ -87,7 +87,7 @@ OpenBank()
 ;找 jugOfWater 和 pastry dough
 TakeOutItems()
 {
-    if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("jugOfWater"))) {
+    if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("jugOfWater"))) {
         ; 找到 "jugOfWater" 图像后要进行的操作
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
@@ -97,7 +97,7 @@ TakeOutItems()
         OutputDebug, "找不到 jugOfWater "
     }
 
-    if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("potOfFlour"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
+    if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("potOfFlour"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
         ; 找到 "potOfFlour" 图像后要进行的操作
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
@@ -108,7 +108,7 @@ TakeOutItems()
     }
 
     ;关闭Bank
-    if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("closeBank"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
+    if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("closeBank"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
         ; 找到 "closeBank" 图像后要进行的操作
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
@@ -157,19 +157,19 @@ MakePastryDough()
 
 ;全部放回Bank
 DepositInventory(){
-    if (FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("depositInventory")))
+    if (FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("depositInventory")))
     {
         GetRandomPos(X, Y, 15, 15, 0.5, 0)
         MouseClick, L, X, Y, 1
         RandomSleep(150)
 
         ;检查是否还有库存，没有则退出循环
-        if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("jugOfWater"))){
+        if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("jugOfWater"))){
             If (ok.Length() < 1){
                 OutputDebug, "库存不足： jugOfWater"
             }
         }
-        if(ok2 := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("potOfFlour"))){
+        if(ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("potOfFlour"))){
             If (ok2.Length() < 1){
                 OutputDebug, "库存不足： potOfFlour"
             }

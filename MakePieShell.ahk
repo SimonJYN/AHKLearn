@@ -84,7 +84,7 @@ OpenBank()
 ;找 pie dish 和 pastry dough
 TakeOutItems()
 {
-  if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB"))) {
+  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB"))) {
     ; 找到 "piedishB" 图像后要进行的操作
     GetRandomPos(X, Y, 8, 8)
     MouseClick, L, X, Y, 1
@@ -94,7 +94,7 @@ TakeOutItems()
     OutputDebug, "找不到 pie dish "
   }
 
-  if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
+  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
     ; 找到 "pastryDough" 图像后要进行的操作
     GetRandomPos(X, Y, 8, 8)
     MouseClick, L, X, Y, 1
@@ -105,7 +105,7 @@ TakeOutItems()
   }
 
   ;关闭Bank
-  if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("closeBank"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
+  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("closeBank"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
     ; 找到 "closeBank" 图像后要进行的操作
     GetRandomPos(X, Y, 8, 8)
     MouseClick, L, X, Y, 1
@@ -154,19 +154,19 @@ MakePieShell()
 
 ;全部放回Bank
 DepositInventory(){
-  if (FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("depositInventory")))
+  if (FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("depositInventory")))
   {
     GetRandomPos(X, Y, 15, 15, 0.5, 0)
     MouseClick, L, X, Y, 1
     RandomSleep(150)
 
     ;检查是否还有库存，没有则退出循环
-    if (ok := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB"))){
+    if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB"))){
       If (ok.Length() < 1){
         OutputDebug, "库存不足：piedishB"
       }
     }
-    if(ok2 := FindText(X, Y, 260, 60 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough"))){
+    if(ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough"))){
       If (ok2.Length() < 1){
         OutputDebug, "pastryDough"
       }
