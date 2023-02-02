@@ -44,6 +44,7 @@ InitPicLab(){
     FindText().PicLib("|<Gerrant>0xFF00FA@1.00$37.A00000900000c00000I1WZ6CCF9X4YZ4sV1mGGEEV99678EQYM",1)
     FindText().PicLib("|<featherPacks>*106$21.z1wy0Tvk00S003s00T003s00D001s20D081s0UD021k08C00Vk02C009U00Q001U00Q003zzzw",1)
     FindText().PicLib("|<buy5FeatherPack>*157$20.TUT7zzxzzzzzzzzzzzzzzUTjtzvyTyzVzbzDtztyTyTbzbtyNyTkzbzzxzzzzzzzzzzzzzztwM",1)
+    FindText().PicLib("|<tradeGerrant>0xFFFFFF@1.00$36.z000M0A000M0A000M0A000M0ASD1swAQNXNaAMDaNaAMNaNwAMNaNUAMDXsy000000U",1)
 }
 ;LookNorth
 LookNorth()
@@ -64,13 +65,25 @@ LookNorth()
 ;找Gerrant
 OpenStore()
 {
+    ;右键NPC
     if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("Gerrant")))
     {
         Y += 15
         GetRandomPos(X, Y, 10, 10, 0.5, 0)
-        MouseClick, L, X, Y, 1, 0
-        RandomSleep(3000,500)
-        LoopBuyAction()
+        MouseClick, R, X, Y, 1, 0
+        RandomSleep(500)
+        ;查找右键菜单中的：Trade Gerrant
+        if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("tradeGerrant"))){
+            GetRandomPos(X, Y, 60, 4, 0, 0.5)
+            MouseClick, L, X, Y, 1
+            RandomSleep(3000,500)
+            LoopBuyAction()
+        }Else{
+            OutputDebug, "找不到 tradeGerrant "
+            MouseMove, 100, 100
+            RandomSleep(500)
+            OpenStore()
+        }
     }
     Else{
         OutputDebug, "找不到 Gerrant "
@@ -80,14 +93,14 @@ OpenStore()
 ;循环购买 feather packs 5次，购买完成后关闭stroe
 LoopBuyAction(){
     buyTimes := 0
-    While, buyTimes < 5
+    While, buyTimes < 4
     {
         buyTimes += 1
         BuyFeatherPacks()
-        If (buyTimes < 6)
-            RandomSleep(5000)
+        RandomSleep(5000)
     }
 
+    BuyFeatherPacks()
     RandomSleep(500)
     ;关闭Store
     if (ok := FindText(X, Y, 270, 230 - WinTitleOffset, 760, 600 + WinTitleOffset, 0, 0, FindText().PicLib("closeStore"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
@@ -135,6 +148,7 @@ OpenFeatherPacks(){
         Y := ok[randIdx].y
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
+        ErrorCount := 0
         RandomSleep(30000)
     }
     Else{
