@@ -6,6 +6,7 @@ global BankerPositionX := 0
 global BankerPositionY := 0
 global LoopCount := 0
 global ErrorCount := 0
+global BuyTimes := 0
 
 SetTitleMatchMode, 2
 SetControlDelay -1
@@ -77,7 +78,13 @@ OpenStore()
             GetRandomPos(X, Y, 60, 4, 0, 0.5)
             MouseClick, L, X, Y, 1
             RandomSleep(3000,500)
-            LoopBuyAction()
+            if (FindText(X1, Y1, 270, 230 - WinTitleOffset, 760, 600 + WinTitleOffset, 0, 0, FindText().PicLib("featherPacks"))) {
+                LoopBuyAction()
+            }
+            Else{
+                OutputDebug, "商店未打开，重新打开"
+                OpenStore()
+            }
         }Else{
             OutputDebug, "找不到 tradeGerrant "
             MouseMove, 100, 100
@@ -87,20 +94,25 @@ OpenStore()
     }
     Else{
         OutputDebug, "找不到 Gerrant "
+        RandomSleep(500)
+        if (FindText(X1, Y1, 270, 230 - WinTitleOffset, 760, 600 + WinTitleOffset, 0, 0, FindText().PicLib("featherPacks"))) {
+            OutputDebug, "商店已打开，开始购买"
+            LoopBuyAction()
+        }
     }
 }
 
 ;循环购买 feather packs 5次，购买完成后关闭stroe
 LoopBuyAction(){
-    buyTimes := 0
-    While, buyTimes < 4
+    While, BuyTimes < 4
     {
-        buyTimes += 1
+        BuyTimes += 1
         BuyFeatherPacks()
         RandomSleep(5000)
     }
 
     BuyFeatherPacks()
+    BuyTimes := 0
     RandomSleep(500)
     ;关闭Store
     if (ok := FindText(X, Y, 270, 230 - WinTitleOffset, 760, 600 + WinTitleOffset, 0, 0, FindText().PicLib("closeStore"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
