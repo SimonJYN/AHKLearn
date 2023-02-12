@@ -161,7 +161,9 @@ OpenFeatherPacks(){
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
         ErrorCount := 0
+        LoopCount += 1
         RandomSleep(30000)
+        OutputDebug, "LoopCount: " %LoopCount%
     }
     Else{
         OutputDebug, "找不到 featherPacks"
