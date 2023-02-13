@@ -4,6 +4,7 @@
 #SingleInstance, Force
 global WinTitleOffset := 25
 global LoopCount := 0
+global SuperheatFinish := 0
 
 SetTitleMatchMode, 2
 SetControlDelay -1
@@ -34,21 +35,26 @@ SetSkillFilter()
 ;↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑    Finished Init Game View    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 OpenBank()
-While, True{
+SuperheatFinish := 1
+While, SuperheatFinish{
+    SuperheatFinish := 0
     TakeOutItems()
     EscKeyFunc()
     ShowSkillPageView()
+    SuperheatOre()
+    LoopCount += 1
+    OutputDebug, "LoopCount: " %LoopCount%
 }
 
 InitPicLab(){
     FindText().PicLib("|<banker>0xFF00FA@1.00$47.00000000000000000000000000000000000000000000000000000000D0040000F0080000W00E0001sMsclE02999WH004FmH74008YYZ8800S799CE0000000000000000000000000000000000000000000000000000000000000000000000000000001",1)
     FindText().PicLib("|<lookNorth>*151$27.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUV0TyCQlztrbDzZwtzyDaDznwXzxDbzzAwzznnXzwA8Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw",1)
     ;IronOre
-
+    FindText().PicLib("|<IronOre>*37$32.3y7zUVwHzk8k5z41A1TV0b0LwEFk5zY4w1TymC0Lzn205zz0U1Dzs80Hzy207DzUUD3js8AUXz2AE8zUQ4270010U000E40004200010U000Dk000000000000000000000008",1)
     ;SuperheatSkill
-
+    FindText().PicLib("|<SuperheatSkill>*109$20.zzzxyTjjbrvtxySSTX37sklz48zk0Da06RVVj9yHkTUwDwD3z3wznzzzy",1)
     ;IronBar
-
+    FindText().PicLib("|<IronBar>*35$28.00y00047000U20040700U03U40010U0045000EjU015zk04jz00Zzw04Uzk0XkT04DsA0Uzw043zy0U7zz403zwU01zo000zU000Q02",1)
 }
 ;LookNorth
 LookNorth()
@@ -107,7 +113,7 @@ EscKeyFunc(){
     SendInput {Esc Down}
     Sleep 50
     SendInput {Esc UP}
-    RandomSleep(500)
+    RandomSleep(1000)
 }
 
 ;按下技能栏的快捷键
@@ -115,19 +121,27 @@ ShowSkillPageView(){
     SendInput {F6 Down}
     Sleep 50
     SendInput {F6 UP}
-    RandomSleep(500)
+    RandomSleep(1000)
 }
 
 SuperheatOre(){
     While, true{
         if (FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("SuperheatSkill"))) {
             ; 找到 "SuperheatSkill" 图像后要进行的操作
-            GetRandomPos(X, Y, 8, 8)
+            GetRandomPos(X, Y, 6, 6)
             MouseClick, L, X, Y, 1
-            RandomSleep(500)
+            RandomSleep(150)
+            GetRandomPos(X, Y, 400, 300)
+            MouseMove, X, Y
+            RandomSleep(1000)
         }
         Else{
             OutputDebug, "找不到 SuperheatSkill "
+            RandomSleep(150)
+            GetRandomPos(X, Y, 400, 300)
+            MouseMove, X, Y
+            ShowSkillPageView()
+            SuperheatOre()
             Return
         }
 
@@ -135,10 +149,14 @@ SuperheatOre(){
             ; 找到 "IronOre" 图像后要进行的操作
             GetRandomPos(X, Y, 8, 8)
             MouseClick, L, X, Y, 1
-            RandomSleep(1200)
+            RandomSleep(150)
+            GetRandomPos(X, Y, 400, 300)
+            MouseMove, X, Y
+            RandomSleep(1000)
         }
         Else{
             OutputDebug, "背包找不到 IronOre ，尝试存入Bar "
+            RandomSleep(150)
             BankBars()
             Return
         }
@@ -146,6 +164,12 @@ SuperheatOre(){
 }
 
 BankBars(){
+    ;打开银行前，需要先把当前Superheat技能使用掉才能打开
+    X := 600
+    Y := 450
+    GetRandomPos(X, Y, 400, 300)
+    MouseClick, L, X, Y, 1
+    RandomSleep(150)
     OpenBank()
 
     if (FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("IronBar"))) {
@@ -153,6 +177,7 @@ BankBars(){
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
         RandomSleep(1200)
+        SuperheatFinish := 1
     }
     Else{
         OutputDebug, "背包找不到 IronBar "
