@@ -2,8 +2,6 @@
 #NoEnv
 #SingleInstance, Force
 global WinTitleOffset := 25
-global BankerPositionX := 0
-global BankerPositionY := 0
 global LoopCount := 0
 global ErrorCount := 0
 global BuyTimes := 0
