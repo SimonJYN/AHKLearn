@@ -3,9 +3,15 @@
 #SingleInstance, Force
 global WinTitleOffset := 25
 global LoopCount := 0
+global isRuning := 1
+;默认自动停止时间：2.5小时 + 随机延时（0-30分钟）
+global StopLimitTime := 9000000
 
 SetTitleMatchMode, 2
 SetControlDelay -1
+
+;定时停止运行
+AutoStopTimer()
 
 runeWin := WinExist("ahk_exe RuneLite.exe")
 
@@ -233,5 +239,17 @@ RandomSleep(time, offset := 1500){
     time += randX
     Sleep, time
     Return
+}
+
+;定时器，自动停止运行
+AutoStopTimer(){
+    Random, randomTime, 0, 1200000
+    StopLimitTime += StopLimitTime
+    SetTimer, AutoStop, StopLimitTime
+}
+AutoStop(){
+    isRuning := 0
+    FormatTime, hhmmss, T8, hh:mm:ss
+    OutputDebug, "! Auto Stop , Time： " %hhmmss% " !"
 }
 ExitApp
