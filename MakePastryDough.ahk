@@ -243,9 +243,10 @@ RandomSleep(time, offset := 1500){
 
 ;定时器，自动停止运行
 AutoStopTimer(){
-    Random, randomTime, 20000, 1200000
-    StopLimitTime += StopLimitTime
+    Random, randomTime, 0, 1200000
+    StopLimitTime += randomTime
     SetTimer, AutoStop, %StopLimitTime%
+    OutputDebug, "! Auto Stop set Timer： " %StopLimitTime% " !"
 }
 AutoStop(){
     isRuning := 0
