@@ -240,11 +240,12 @@ RandomSleep(time, offset := 1500){
 AutoStopTimer(){
     Random, randomTime, 0, 1200000
     StopLimitTime += StopLimitTime
-    SetTimer, AutoStop, StopLimitTime
+    SetTimer, AutoStop, %StopLimitTime%
 }
 AutoStop(){
     isRuning := 0
     FormatTime, hhmmss, T8, hh:mm:ss
     OutputDebug, "! Auto Stop , Time： " %hhmmss% " !"
+    ExitApp
 }
 ExitApp
