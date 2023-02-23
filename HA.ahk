@@ -1,4 +1,4 @@
-#Include <FindText>
+﻿#Include <FindText>
 #Include <CommonUtil>
 #NoEnv
 #SingleInstance, Force
