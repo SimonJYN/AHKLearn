@@ -38,7 +38,7 @@ MouseClickDrag, M, 690, 480, 690, 650
 ;↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑    Finished Init Game View    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 InitPicLab(){
-    FindText().PicLib("|<BlueSquare>0x0013FF@1.00$8.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzs",1)
+    FindText().PicLib("|<BlueSquare>0x0013FF@1.00$8.zzzzzzzzzzzzzzzzzzzzzs",1)
     FindText().PicLib("|<PurpleSquare>0xFF00FF@1.00$9.zzzzzzzzzzzzzzzzzzU",1)
 }
 ;LookNorth
@@ -67,7 +67,7 @@ While, True{
 CheckBlueSquare(){
     if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("BlueSquare")))
     {
-        GetRandomPos(X, Y, 4, 12)
+        GetRandomPos(X, Y, 4, 7)
         MouseClick, L, X, Y, 1
         RandomSleep(3500)
     }
