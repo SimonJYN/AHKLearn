@@ -4,6 +4,8 @@
 #SingleInstance, Force
 global WinTitleOffset := 25
 global LoopCount := 0
+global NotFindCount := 0
+global PickRewardNumber := 0
 global SuperheatFinish := 0
 global StopLimitTime := 9000000
 
@@ -34,12 +36,14 @@ ControlClick, ,ahk_id %runeWin%, ,WheelDown, 35
 RandomSleep(150)
 LookNorth()
 
-MouseClickDrag, M, 690, 480, 690, 650
+MouseClickDrag, M, 690, 480, 690, 750
 ;↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑    Finished Init Game View    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 InitPicLab(){
-    FindText().PicLib("|<BlueSquare>0x0013FF@1.00$8.zzzzzzzzzzzzzzzzzzzzzs",1)
-    FindText().PicLib("|<PurpleSquare>0xFF00FF@1.00$9.zzzzzzzzzzzzzzzzzzU",1)
+    FindText().PicLib("|<lookNorth>*151$27.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUV0TyCQlztrbDzZwtzyDaDznwXzxDbzzAwzznnXzwA8Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw",1)
+    FindText().PicLib("|<BlueSquare>0x0013FF@1.00$8.zzzzzzzzzs",1)
+    FindText().PicLib("|<PurpleSquare>0xFF00FF@1.00$9.zzzzzzzzzU",1)
+    FindText().PicLib("|<RedSquare>0xFF0000@1.00$9.zzzzzzzzzzw",1)
 }
 ;LookNorth
 LookNorth()
@@ -58,28 +62,50 @@ LookNorth()
 }
 
 While, True{
-    CheckPurpleSquare()
-    RandomSleep(500)
-    CheckBlueSquare()
-    RandomSleep(500)
+    if (ok := FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("BlueSquare")))
+    {
+        NotFindCount := 0
+        PickRewardNumber := 0
+        Random, randIdx, 1, ok.Length()
+        X := ok[randIdx].x
+        Y := ok[randIdx].y
+        ;GetRandomPos(X, Y, 4, 12)
+        MouseClick, L, X, Y, 1
+        RandomSleep(3500)
+    }
+    else if (ok := FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("PurpleSquare")))
+    {
+        If (PickRewardNumber < 2){
+            PickRewardNumber += 1
+            Random, randIdx, 1, ok.Length()
+            X := ok[randIdx].x
+            Y := ok[randIdx].y
+            ;GetRandomPos(X, Y, 4, 6)
+            MouseClick, L, X, Y, 1
+            RandomSleep(3500)
+        }
+        Else{
+            If (ok := FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("PurpleSquare"))){
+                Random, randIdx, 1, ok.Length()
+                X := ok[randIdx].x
+                Y := ok[randIdx].y
+                MouseClick, L, X, Y, 1
+                RandomSleep(3500)
+                PickRewardNumber := 0
+            }
+        }
+    }Else{
+        NotFindCount += 1
+        If (NotFindCount>4){
+            X := 980
+            Y := 540
+            GetRandomPos(X, Y, 20, 20)
+            MouseClick, L, X, Y, 1
+        }
+    }
+    RandomSleep(3500)
 }
 
-CheckBlueSquare(){
-    if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("BlueSquare")))
-    {
-        GetRandomPos(X, Y, 4, 7)
-        MouseClick, L, X, Y, 1
-        RandomSleep(3500)
-    }
-}
-CheckPurpleSquare(){
-    if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("PurpleSquare")))
-    {
-        GetRandomPos(X, Y, 4, 6)
-        MouseClick, L, X, Y, 1
-        RandomSleep(3500)
-    }
-}
 ;定时器，自动停止运行
 AutoStopTimer(){
     Random, randomTime, 0, 1200000
