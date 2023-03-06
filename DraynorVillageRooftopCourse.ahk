@@ -85,7 +85,7 @@ While, True{
             RandomSleep(3500)
         }
         Else{
-            If (ok := FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("PurpleSquare"))){
+            If (ok := FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("RedSquare"))){
                 Random, randIdx, 1, ok.Length()
                 X := ok[randIdx].x
                 Y := ok[randIdx].y
@@ -103,7 +103,7 @@ While, True{
             MouseClick, L, X, Y, 1
         }
     }
-    RandomSleep(3500)
+    RandomSleep(500)
 }
 
 ;定时器，自动停止运行

@@ -69,6 +69,14 @@ LookNorth()
   }
 }
 
+;按下ESC
+EscKeyFunc(){
+  ;关闭Bank
+  SendInput {Esc Down}
+  Sleep 50
+  SendInput {Esc UP}
+  RandomSleep(1000)
+}
 ;找Banker
 OpenBank()
 {
@@ -109,15 +117,7 @@ TakeOutItems()
   }
 
   ;关闭Bank
-  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("closeBank"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
-    ; 找到 "closeBank" 图像后要进行的操作
-    GetRandomPos(X, Y, 8, 8)
-    MouseClick, L, X, Y, 1
-    RandomSleep(500)
-  }
-  Else{
-    OutputDebug, "找不到 closeBank"
-  }
+  EscKeyFunc()
 }
 
 ;合成pie shell
@@ -180,6 +180,11 @@ DepositInventory(){
   }
   Else{
     OutputDebug, "找不到Deposit Inventory"
+    EscKeyFunc()
+    RandomSleep(500)
+    OpenBank()
+    RandomSleep(500)
+    DepositInventory()
   }
 }
 ;get random postion in item image. offsetX: 坐标x距离边距的最大垂直距离

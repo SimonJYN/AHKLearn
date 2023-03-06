@@ -56,6 +56,22 @@ LookNorth()
         OutputDebug, "初始化失败，找不到LookNorth按钮"
     }
 }
+;按下ESC
+EscKeyFunc(){
+    ;关闭Bank
+    SendInput {Esc Down}
+    Sleep 50
+    SendInput {Esc UP}
+    RandomSleep(1000)
+}
+
+;按下技能栏的快捷键
+ShowSkillPageView(){
+    SendInput {F6 Down}
+    Sleep 50
+    SendInput {F6 UP}
+    RandomSleep(1000)
+}
 
 ;背包查找：
 ; if (ok := FindText(X1, Y1, 270, 230 - WinTitleOffset, 760, 600 + WinTitleOffset, 0, 0, FindText().PicLib("featherPacks"))) { }
