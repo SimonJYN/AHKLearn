@@ -4,8 +4,8 @@
 global WinTitleOffset := 25
 global LoopCount := 0
 global isRuning := 1
-;默认自动停止时间：2.5小时 + 随机延时（0-30分钟）
-global StopLimitTime := 9000000
+;默认自动停止时间：1.5小时 + 随机延时（0-30分钟）
+global StopLimitTime := 5400000
 
 SetTitleMatchMode, 2
 SetControlDelay -1
@@ -44,10 +44,8 @@ While, True{
 }
 
 InitPicLab(){
-  FindText().PicLib("|<piedishB>*68$37.zU000Tzk000Dzk0007zs0001zw0001zy0000zz0000Tzk000Dzs000Dzw0007zz0007zzk003zzw00DzzzU0TzzzzzzzzzzzzzzzzzzzzzzzzzzU",1)
-  FindText().PicLib("|<pastryDough>*100$31.zzzzzzzzzzzzzzzzzzzzzzzzzzzw3zzzw0zzzy0Tzzy07zzy03zzz01zzzk0zzzy0zzzzkTzzzzzzzzzzzzzzzzzzzzzzU",1)
-  FindText().PicLib("|<closeBank>*41$14.00000kAC71nUDk1s0A07U3w1nUsQA300000U",1)
-  FindText().PicLib("|<pieDishI>*63$35.zzzzzzzzzzzzzzzzzzzs0Tzzz003zzs003zzU003zy0001zw0003zk0007zU0007z0000Ty0000zw0001zw0003zs000Dzk000Tzk001zzk003zzk00zzzs07zzzzzzzzzzzzzzzzzzzzzzzzz",1)
+  FindText().PicLib("|<VialOfWater>*96$21.z1zzwDzzVzzwDzzVzzsDzy1zzk7zw0zzU7zs0zz03zk0Ty03zU0Tw03zU0Dy01zk0DzU3zzUzzzzzU",1)
+  FindText().PicLib("|<GuamLeaf>*41$30.03zzy03zzy0Tzzy1zzzy3zzzw7zzzwDzzzsTzzzsDzzzs3zzzk0zzzk1zzzk3zzzU7zzzUDzzyUDzzfkTzzzUzzzw0Tzz0000000U",1)
   FindText().PicLib("|<depositInventory>*58$33.U0000M000000000000000000000001zs000k0U00C02001k6800T1xU07wCA01zkVU0Dr0A01zN3U0Dtww03DbxUFXy3g3EzkNUIDy0A23zk3UENy1w277kz0EESDk3z1zw0Dw7y00000000000000000000000400003k0000o",1)
   FindText().PicLib("|<banker>0xFF00FA@1.00$47.00000000000000000000000000000000000000000000000000000000D0040000F0080000W00E0001sMsclE02999WH004FmH74008YYZ8800S799CE0000000000000000000000000000000000000000000000000000000000000000000000000000001",1)
   FindText().PicLib("|<lookNorth>*151$27.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUV0TyCQlztrbDzZwtzyDaDznwXzxDbzzAwzznnXzwA8Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw",1)
@@ -96,24 +94,24 @@ OpenBank()
 ;找 pie dish 和 pastry dough
 TakeOutItems()
 {
-  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB"))) {
+  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("VialOfWater"))) {
     ; 找到 "piedishB" 图像后要进行的操作
     GetRandomPos(X, Y, 8, 8)
     MouseClick, L, X, Y, 1
     RandomSleep(500)
   }
   Else{
-    OutputDebug, "找不到 pie dish "
+    OutputDebug, "找不到 VialOfWater "
   }
 
-  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
+  if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("GuamLeaf"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
     ; 找到 "pastryDough" 图像后要进行的操作
     GetRandomPos(X, Y, 8, 8)
     MouseClick, L, X, Y, 1
     RandomSleep(500)
   }
   Else{
-    OutputDebug, "找不到 pastry dough"
+    OutputDebug, "找不到 GuamLeaf"
   }
 
   ;关闭Bank
@@ -125,7 +123,7 @@ MakePieShell()
 {
   RandomSleep(150)
 
-  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("pieDishI"))) {
+  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("VialOfWater"))) {
     ; 找到 "pieDishI" 图像后要进行的操作
     Random, randIdx, 1, ok.Length()
     X := ok[randIdx].x
@@ -135,10 +133,10 @@ MakePieShell()
     RandomSleep(500)
   }
   Else{
-    OutputDebug, "找不到 pie dish "
+    OutputDebug, "找不到 VialOfWater "
   }
 
-  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough"), 0)) { ;0 使用上一次搜索"pieDishI"的截图来调用 FindText
+  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("GuamLeaf"), 0)) { ;0 使用上一次搜索"pieDishI"的截图来调用 FindText
     ; 找到 "pastryDough" 图像后要进行的操作
     Random, randIdx, 1, ok.Length()
     X := ok[randIdx].x
@@ -148,12 +146,12 @@ MakePieShell()
     RandomSleep(1500)
   }
   Else{
-    OutputDebug, "找不到 pastry dough"
+    OutputDebug, "找不到 GuamLeaf"
   }
   SendInput {Space Down}
   Sleep 50
   SendInput {Space UP}
-  RandomSleep(20000)
+  RandomSleep(10000)
 }
 
 ;全部放回Bank
@@ -165,12 +163,12 @@ DepositInventory(){
     RandomSleep(150)
 
     ;检查是否还有库存，没有则退出循环
-    if ((ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB")) == 0)){
-      OutputDebug, "库存不足：piedishB"
+    if ((ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("VialOfWater")) == 0)){
+      OutputDebug, "库存不足：VialOfWater"
       ExitApp
     }
-    if((ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough")) == 0)){
-      OutputDebug, "pastryDough"
+    if((ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("GuamLeaf")) == 0)){
+      OutputDebug, "库存不足：GuamLeaf"
       ExitApp
     }
     LoopCount ++

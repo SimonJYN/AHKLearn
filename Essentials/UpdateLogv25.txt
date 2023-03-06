@@ -1,0 +1,50 @@
+21/4/2017 Optimised and improved the Blast Furnace Script
+17/4/2017 Optimised and improved the Blast Furnace Script
+16/4/2017 Added in some fail-safes into the Blast Furnace script so that it's reliable.
+15/4/2017 Fixed/Optimised Blast Furnace Script.
+15/4/2017 Blast furnace script added.
+10/4/2017 Implemented an "Automatic Updater" Into the tool, so I no longer need to advise premium users that there's an updated version available, and prompting the option to update upon opening if an update is available.
+10/4/2017 Created a new script "Making Complete Potions"
+10/4/2017 Renamed the "Mixing Potion" Script to "Making Unfinished Potions"
+10/4/2017 Removed all auto-login features, as I don't recommend using this feature as it's only necessary to use if you're force-logged out from the 6h timer. Which I don't recommend botting for that long.
+9/4/2017 Fixed the barbarian fishing script so that it's now working once again.
+26/3/2017 Fixed the NMZ prayer script so that it doens't bug out attempting to use an overload.
+18/3/2017 Added 4 new enchanting jewellery scripts as per requested by premium user.
+18/3/2017 Fixed the Barbarian Fishing script as it was being reported as broken.
+18/3/2017 Added in a "Master Farmer" thieving script as requested.
+28/2/2017 Added in an option to the "Timer" to close the bot when the timer runs out.
+28/2/2017 Made it so most of the scripts that drop items now use the shift-drop method, so make sure if you use the updated version, that you have the "Shift Drop" function enabled.
+28/2/2017 Added in a timer, essentially letting people choose how long they want a script to be used for. (This feature replaced the "Auto-Typer" which was at the bottom of the first tab.)
+27/2/2017 Added a 3-tick Barbarian fishing script. (Really only viable for 70+ Fishing)
+26/2/2017 Made it so it's possible to type while a script it running, so ones able to reply while botting.
+18/2/2017 Fixed the "Thieving Men" Script, because it was unreliable since the men in the ardougne building don't have any unique colours, (Men were same colour as the building which caused issues) the script has now been changed to be used upstairs in the Falador Pub on the "Drunken Man"
+18/2/2017 Fixed the "Fly Fishing Trout" Script as it wasn't working before.
+18/2/2017 Optimised the wine fermenting script, now has the capability to reach 500k+ exp/hour rather than 350k~
+18/2/2017 Fixed the nightmare zone prayer script, it no longer requires OSBuddy PRO.
+11/01/2017 Fixed both fishing scripts which broke after the OSBuddy overlay update.
+26/8/2016 Fixed all the fletching scripts due to the latest update.
+20/8/2016 Every script that uses the duel arena bank will now prioritize the bottom bank chest rather than the top one (more people stack on the bottom chest, so if you bot on world 2, you're less likely to get reported)
+18/8/2016 Fixed a small bug with every script that runs at the duel arena where it was sometimes clicking the exp counter if it was open.
+18/8/2016 Added in a fail-safe with every script that uses the duel-arena bank, if it somehow wanders off, it will click the bank on the minimap and find its way bank to the bank chest.
+18/8/2016 Fixed a small bug with the "Granite Miner" Script.
+18/8/2016 Slightly optimised the "Knights of Ardougne" Thieving Script
+18/8/2016 Highly Optimised the "Iron Power Miner" Script
+17/8/2016 Added a "Granite Miner" Script into the "Exp Bots" Tab
+17/8/2016 Fixed and optimised the "Knights of Ardougne" Thieving script.
+9/8/2016 Added a Karambwan cooking script into the "Money Making" Tab.
+29/7/2016 Optimised the Knights of Ardougne thieving script.
+17/7/2016 Added in 2 fishing scripts.
+13/7/2016 Added in overload support into the "NightmareZonePrayer" Bot.
+5/7/2016 Added "Arrow Fletcher" and "Dart Fletcher" Scripts
+5/7/2016 Removed the specific fletching scripts and replaced them with a more general script that can fletch any type of log.
+4/7/2016 Added several "Glassblowing" Crafting scripts.
+3/7/2016 Replaced "Opal Cutter" and "Emerald Cutter" with a "Gem Cutter" Script, which works on any gem type.
+19/6/2016 Created a "Maple Cutting" Woodcutting bot to the "Exp Bots" Tab
+18/6/2016 Fixed the "UpdateLog" So it actually downloads and updates
+18/6/2016 Slightly Improved the "Knights of Ardougne" Script.
+18/6/2016 Massively Improved the "Willow Cutter" Although it now requires OSbussy PRO
+13/6/2016 Fixed the auto login on multiple scripts.
+13/6/2016 Added The "Update Log" to "Other Tab"
+12/6/2016 Added both the "Cooking and Wine Fermenting" Script/Bot
+11/6/2016 Added "Thieving Men/Warriors/Knights of Ardougne" Scripts/Bots
+11/6/2016 Added the "High Alch Last Item" Script/Bot

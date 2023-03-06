@@ -82,6 +82,12 @@ ShowSkillPageView(){
 ; LoopCount += 1
 ; OutputDebug, "LoopCount: " %LoopCount%
 
+;检查是否还有库存，没有则退出循环
+; if ((ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB")) == 0)){
+;     OutputDebug, "库存不足： piedishB "
+; }
+; ExitApp
+
 ;定时器，自动停止运行
 AutoStopTimer(){
     Random, randomTime, 0, 1200000

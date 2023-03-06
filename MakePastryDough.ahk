@@ -168,15 +168,13 @@ DepositInventory(){
         RandomSleep(150)
 
         ;检查是否还有库存，没有则退出循环
-        if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("jugOfWater"))){
-            If (ok.Length() < 1){
-                OutputDebug, "库存不足： jugOfWater"
-            }
+        if ((ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("jugOfWater")) == 0)){
+            OutputDebug, "库存不足： jugOfWater"
+            ExitApp
         }
-        if(ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("potOfFlour"))){
-            If (ok2.Length() < 1){
-                OutputDebug, "库存不足： potOfFlour"
-            }
+        if((ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("potOfFlour")) == 0)){
+            OutputDebug, "库存不足： potOfFlour"
+            ExitApp
         }
         LoopCount ++
         OutputDebug, "LoopCount: " %LoopCount%
