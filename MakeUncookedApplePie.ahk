@@ -44,6 +44,7 @@ While, True{
 }
 
 InitPicLab(){
+  FindText().PicLib("|<pieDishI>*63$35.zzzzzzzzzzzzzzzzzzzs0Tzzz003zzs003zzU003zy0001zw0003zk0007zU0007z0000Ty0000zw0001zw0003zs000Dzk000Tzk001zzk003zzk00zzzs07zzzzzzzzzzzzzzzzzzzzzzzzz",1)
   FindText().PicLib("|<piedishB>*68$37.zU000Tzk000Dzk0007zs0001zw0001zy0000zz0000Tzk000Dzs000Dzw0007zz0007zzk003zzw00DzzzU0TzzzzzzzzzzzzzzzzzzzzzzzzzzU",1)
   FindText().PicLib("|<CookingApple>*77$16.zzzzzzvzsnz2Ds0TU1y03s0TU1z07y0Tw3zzzs",1)
   FindText().PicLib("|<depositInventory>*58$33.U0000M000000000000000000000001zs000k0U00C02001k6800T1xU07wCA01zkVU0Dr0A01zN3U0Dtww03DbxUFXy3g3EzkNUIDy0A23zk3UENy1w277kz0EESDk3z1zw0Dw7y00000000000000000000000400003k0000o",1)
@@ -123,8 +124,8 @@ MakePieShell()
 {
   RandomSleep(150)
 
-  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("pieDishB"))) {
-    ; 找到 "pieDishB" 图像后要进行的操作
+  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("pieDishI"))) {
+    ; 找到 "pieDishI" 图像后要进行的操作
     Random, randIdx, 1, ok.Length()
     X := ok[randIdx].x
     Y := ok[randIdx].y
