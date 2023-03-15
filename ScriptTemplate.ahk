@@ -27,6 +27,10 @@ WinRestore, ahk_id %runeWin%
 WinMove, ahk_id %runeWin%, , 0, 0, 1280, 960
 RandomSleep(150)
 
+While, true{
+    ControlClick, ,ahk_id %runeWin%, ,R, 1, x600 y570 NA
+    RandomSleep(120000)
+}
 InitPicLab()
 
 ;相机视角拉进到最大(35次)
