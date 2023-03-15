@@ -106,7 +106,7 @@ TakeOutItems()
   }
 
   if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("CookingApple"), 0)) { ;0 使用上一次搜索"piedishB"的截图来调用 FindText
-    ; 找到 "pastryDough" 图像后要进行的操作
+    ; 找到 "CookingApple" 图像后要进行的操作
     GetRandomPos(X, Y, 8, 8)
     MouseClick, L, X, Y, 1
     RandomSleep(500)
@@ -138,7 +138,7 @@ MakePieShell()
   }
 
   if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("CookingApple"), 0)) { ;0 使用上一次搜索"pieDishB"的截图来调用 FindText
-    ; 找到 "pastryDough" 图像后要进行的操作
+    ; 找到 "CookingApple" 图像后要进行的操作
     Random, randIdx, 1, ok.Length()
     X := ok[randIdx].x
     Y := ok[randIdx].y
@@ -165,11 +165,11 @@ DepositInventory(){
 
     ;检查是否还有库存，没有则退出循环
     if ((ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("piedishB")) == 0)){
-      OutputDebug, "库存不足：piedishB"
+      OutputDebug, "库存不足： piedishB"
       ExitApp
     }
-    if((ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("pastryDough")) == 0)){
-      OutputDebug, "CookingApple"
+    if((ok2 := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("CookingApple")) == 0)){
+      OutputDebug, "库存不足： CookingApple"
       ExitApp
     }
     LoopCount ++
