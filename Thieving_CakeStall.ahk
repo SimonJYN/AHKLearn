@@ -115,7 +115,7 @@ DropAll(){
     ;OutputDebug, "找不到 Cake "
   }
 
-  If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("ChocolateSlice"))){
+  If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("ChocolateSlice"), 0)){
     SendInput {Shift Down}
     RandomSleep(50)
     For k, v in ok
@@ -132,7 +132,7 @@ DropAll(){
     ;OutputDebug, "找不到 ChocolateSlice "
   }
 
-  If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("Bread"))){
+  If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("Bread"), 0)){
     SendInput {Shift Down}
     RandomSleep(50)
     For k, v in ok
