@@ -109,14 +109,18 @@ TakeOutItems()
 }
 
 Clean(){
-    if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("GrimyRanarrWeed"))) {
+    if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0.0001, 0.0001, FindText().PicLib("GrimyRanarrWeed"))) {
         ; 找到 "GrimyRanarrWeed" 图像后要进行的操作
         Random, randIdx, 1, ok.Length()
         X := ok[randIdx].x
         Y := ok[randIdx].y
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
-        RandomSleep(32000)
+        RandomSleep(200, 500)
+        GetRandomPos(X, Y, 400, 300)
+        MouseMove, X, Y
+        RandomSleep(50, 100)
+        Clean()
     }
     Else{
         OutputDebug, "找不到 GrimyRanarrWeed ，放回Bank"
