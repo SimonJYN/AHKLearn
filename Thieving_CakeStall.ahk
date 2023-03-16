@@ -79,11 +79,13 @@ EscKeyFunc(){
 Steal(){
   If (StealCount < 26){
     if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("Stall"))){
-      X := 100
-      Y := 330
-      GetRandomPos(X, Y, 15, 15)
+      X := 240
+      Y := 380
+      GetRandomPos(X, Y, 15, 15, 0, 1)
       MouseClick, L, X, Y, 1
-      RandomSleep(3500)
+      RandomSleep(100)
+      MouseMove, 600, 600
+      RandomSleep(3200)
       StealCount ++
       Steal()
     }Else{
