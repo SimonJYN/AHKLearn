@@ -35,6 +35,7 @@ RandomSleep(150)
 
 InitPicLab()
 LookNorth()
+MouseClickDrag, M, 690, 480, 690, 750
 ;↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑    Finished Init Game View    ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
 DropAll()
@@ -45,7 +46,7 @@ While, True{
 
 InitPicLab(){
   FindText().PicLib("|<Stall>*176$55.00007zzzzU000Dzzzzk000Tzzzzs000Tzzzzw000Dzzzzy0003zzzzz0000zzzzzU000Dzzzzk0003zzzzs0000zzzzw0Dzzzzzzy07zzzzzzz03zzzzzzzU1zzzzzzzk0Tzzzzzzs07zzzzzzw00zzzzzzz",1)
-  FindText().PicLib("|<pieDishI>*63$35.zzzzzzzzzzzzzzzzzzzs0Tzzz003zzs003zzU003zy0001zw0003zk0007zU0007z0000Ty0000zw0001zw0003zs000Dzk000Tzk001zzk003zzk00zzzs07zzzzzzzzzzzzzzzzzzzzzzzzz",1)
+  FindText().PicLib("|<InventoryEmptyGrid>0x3E3529@1.00$35.zzzzzzzzzzzzzzzzzzzzzzszbzzzly7zzzjwDzzzTszzzzzvzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyTzzzzyzzzzzxzzzzzszzzzzUTzzzzUzzzzz1zzzzzXzzzzz7znzzyDzbzzsTzzzzkzzzzzVzzzzzbzzzzzzzzzzzzzzk",1)
   FindText().PicLib("|<lookNorth>*151$27.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUV0TyCQlztrbDzZwtzyDaDznwXzxDbzzAwzznnXzwA8Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw",1)
   FindText().PicLib("|<Cake>*126$30.s00Tzk00TzU00DzU00DzU007zU007zU007zc003zw80Dzzw0TzjyATzrzzzzvzzzzwTzzzztzDzzzzzzzzzzzzzzzzzzzzzzzzzzU",1)
   FindText().PicLib("|<ChocolateSlice>*28$25.TzV0Tw0EDk0460022000V0008U004M001A000I00060003U001k000s000Q000C00050002U0018000X000EQ0081U040Dzx",1)
@@ -77,21 +78,15 @@ EscKeyFunc(){
 }
 
 Steal(){
-  If (StealCount < 26){
-    if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("Stall"))){
-      X := 240
-      Y := 380
-      GetRandomPos(X, Y, 15, 15, 0, 1)
-      MouseClick, L, X, Y, 1
-      RandomSleep(100)
-      MouseMove, 600, 600
-      RandomSleep(3200)
-      StealCount ++
-      Steal()
-    }Else{
-      RandomSleep(50,50)
-      Steal()
-    }
+  If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("InventoryEmptyGrid"))){
+    X := 440
+    Y := 580
+    GetRandomPos(X, Y, 15, 15, 0, 1)
+    MouseClick, L, X, Y, 1
+    RandomSleep(100,50)
+    ; MouseMove, 600, 600
+    ; RandomSleep(50,50)
+    Steal()
   }
   Else{
     DropAll()
