@@ -40,7 +40,11 @@ MouseClickDrag, M, 690, 480, 690, 750
 
 DropAll()
 While, True{
-  RandomSleep(2000)
+  X := 400
+  Y := 550
+  GetRandomPos(X, Y, 10, 15, 0, 1)
+  MouseClick, L, X, Y, 1
+  RandomSleep(100,100)
   Steal()
 }
 
@@ -78,18 +82,19 @@ EscKeyFunc(){
 }
 
 Steal(){
-  If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("InventoryEmptyGrid"))){
-    X := 440
-    Y := 580
-    GetRandomPos(X, Y, 15, 15, 0, 1)
-    MouseClick, L, X, Y, 1
-    RandomSleep(100,50)
-    ; MouseMove, 600, 600
-    ; RandomSleep(50,50)
-    Steal()
+  If (StealCount > 11){
+    If (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("InventoryEmptyGrid"))){
+      ; MouseMove, 600, 600
+      ; RandomSleep(50,50)
+      StealCount := 0
+    }
+    Else{
+      RandomSleep(500,500)
+      DropAll()
+    }
   }
   Else{
-    DropAll()
+    StealCount ++
   }
 }
 
