@@ -5,7 +5,7 @@ global WinTitleOffset := 25
 global LoopCount := 0
 global isRuning := 1
 ;默认自动停止时间：2.5小时 + 随机延时（0-30分钟）
-global StopLimitTime := 9000000
+global StopLimitTime := 4000000
 
 SetTitleMatchMode, 2
 SetControlDelay -1
@@ -47,6 +47,7 @@ InitPicLab(){
   FindText().PicLib("|<InventoryEmptyGrid>0x3E3529@1.00$35.zzzzzzzzzzzzzzzzzzzzzzszbzzzly7zzzjwDzzzTszzzzzvzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyTzzzzyzzzzzxzzzzzszzzzzUTzzzzUzzzzz1zzzzzXzzzzz7znzzyDzbzzsTzzzzkzzzzzVzzzzzbzzzzzzzzzzzzzzk",1)
   FindText().PicLib("|<lookNorth>*151$27.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUV0TyCQlztrbDzZwtzyDaDznwXzxDbzzAwzznnXzwA8Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw",1)
   FindText().PicLib("|<WillowLog>*27$31.000DU000T8000Q407zk204S0104000k20008100080U0040E0070s006EU0006U0000k0000M0000A000060000300002U00078000T3s03k040C0010s000FU0007000E",1)
+  FindText().PicLib("|<TewkLog>*84$31.zzzzzzzzzDzzzw7zzzk3zwy01zw000zy000Tz000DzU007zk003zs002TU0007U0000k0000M0000A000060000300003V0007s000Tzs03zzw0Dzzz0zzzzlzzzzzzzzk",1)
 }
 ;LookNorth
 LookNorth()
@@ -90,7 +91,7 @@ Woodcutting(){
 }
 
 DropAll(){
-  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("WillowLog"))) {
+  if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("TewkLog"))) {
     SendInput {Shift Down}
     RandomSleep(50)
     For k, v in ok
