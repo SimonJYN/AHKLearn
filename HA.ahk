@@ -37,9 +37,9 @@ While, True{
     Y := 775
     GetRandomPos(X,Y,4)
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-    RandomSleep(850)
+    RandomSleep(100, 50)
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-    RandomSleep(3050)
+    RandomSleep(2050)
 }
 
 ;定时器，自动停止运行
