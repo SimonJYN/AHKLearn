@@ -93,7 +93,7 @@ OpenBank()
 
 TakeOutItems()
 {
-    if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0.000001, 0.000001, FindText().PicLib("GrimyRanarrWeed"))) {
+    if (ok := FindText(X, Y, 260, 30 - WinTitleOffset, 750, 785 + WinTitleOffset, 0, 0, FindText().PicLib("GrimyRanarrWeed"))) {
         ; 找到 "GrimyRanarrWeed" 图像后要进行的操作
         GetRandomPos(X, Y, 8, 8)
         MouseClick, L, X, Y, 1
@@ -109,7 +109,7 @@ TakeOutItems()
 }
 
 Clean(){
-    if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0.0001, 0.0001, FindText().PicLib("GrimyRanarrWeed"))) {
+    if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("GrimyRanarrWeed"))) {
         ; 找到 "GrimyRanarrWeed" 图像后要进行的操作
         Random, randIdx, 1, ok.Length()
         X := ok[randIdx].x
