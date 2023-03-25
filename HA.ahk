@@ -4,6 +4,7 @@
 #SingleInstance, Force
 global WinTitleOffset := 25
 global LoopCount := 0
+global TargetRunTimes := 45
 global SuperheatFinish := 0
 global StopLimitTime := 9000000
 
@@ -31,7 +32,7 @@ SendInput {F6 Down}
 Sleep 50
 SendInput {F6 UP}
 
-While, True{
+While, LoopCount < TargetRunTimes{
     ;1080 775
     X := 1080
     Y := 775
@@ -40,8 +41,10 @@ While, True{
     RandomSleep(100, 50)
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
     RandomSleep(2050)
+    LoopCount ++
 }
 
+ExitApp
 ;定时器，自动停止运行
 AutoStopTimer(){
     Random, randomTime, 0, 1200000
