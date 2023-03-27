@@ -4,7 +4,7 @@
 #SingleInstance, Force
 global WinTitleOffset := 25
 global LoopCount := 0
-global TargetRunTimes := 45
+global TargetRunTimes := 3427
 global SuperheatFinish := 0
 global StopLimitTime := 9000000
 
@@ -40,7 +40,7 @@ While, LoopCount < TargetRunTimes{
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
     RandomSleep(100, 50)
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-    RandomSleep(2050)
+    RandomSleep(3200,500)
     LoopCount ++
 }
 
