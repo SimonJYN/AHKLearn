@@ -29,55 +29,68 @@ WinMove, ahk_id %runeWin%, , 0, 0, 1280, 960
 RandomSleep(150)
 InitPicLab()
 
-While, true{
-    X := 1217
-    Y := 887
-    RandomSleep(1000, 200)
-    ControlClick, ,ahk_id %runeWin%, ,R, 1, x%X% y%Y% NA
-    RandomSleep(50,10)
-    ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-    RandomSleep(1000, 100)
-}
-ExitApp
+; While, true{
+;     X := 1217
+;     Y := 887
+;     RandomSleep(1000, 200)
+;     ControlClick, ,ahk_id %runeWin%, ,R, 1, x%X% y%Y% NA
+;     RandomSleep(50,10)
+;     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
+;     RandomSleep(1000, 100)
+; }
+; ExitApp
 
 While, true{
     CheckThreshold()
 
+    ;Prayer page  1222  640
+    X := 1222
+    Y := 640
+    GetRandomPos(X,Y,4)
+    ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
+    RandomSleep(200, 100)
+
     ;Click Rapid Heal
-    ControlSend, , {F5 Down}, ahk_id %runeWin%
-    RandomSleep(50,50)
-    ControlSend, , {F5 Up}, ahk_id %runeWin%
     X := 1230
     Y := 720
     GetRandomPos(X,Y,4)
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-    RandomSleep(200, 100)
+    RandomSleep(300, 100)
     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
+    RandomSleep(200, 100)
 
     ;是否达到门槛，是则表示应该喝 Absorption ，否则继续循环
     if (LowThreshold) {
         ;切换到背包
-        ControlSend, , {Esc Down}, ahk_id %runeWin%
-        RandomSleep(50,50)
-        ControlSend, , {Esc Up}, ahk_id %runeWin%
+        X := 1155
+        Y := 640
+        GetRandomPos(X,Y,4)
+        ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
+        RandomSleep(200, 100)
+
+        ;不知为何，只能激活窗口后才能使用 ControlSend
+        ; ControlSend, , {Esc Down}, ahk_id %runeWin%
+        ; RandomSleep(50,50)
+        ; ControlSend, , {Esc Up}, ahk_id %runeWin%
+
         ;是否存在Absorption，是则
         if (ok := FindText(X, Y, 1020, 660 - WinTitleOffset, 1280, 960 + WinTitleOffset, 0, 0, FindText().PicLib("Absorption"))) {
             drinkCount := 0
             For k, v in ok
             {
-                If (drinkCount < 12)
+                If (drinkCount < 11)
                 {
                     X := ok[k].x
                     Y := ok[k].y
                     GetRandomPos(X, Y, 6, 6)
                     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-                    RandomSleep(1000, 200)
+                    RandomSleep(1500, 300)
                     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-                    RandomSleep(1000, 200)
+                    RandomSleep(1500, 300)
                     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-                    RandomSleep(1000, 200)
+                    RandomSleep(1500, 300)
                     ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-                    RandomSleep(1000, 200)
+                    RandomSleep(1500, 300)
                     drinkCount := drinkCount + 4
                 }
             }
@@ -102,16 +115,17 @@ While, true{
             Y := 887
             RandomSleep(100, 100)
             ControlClick, ,ahk_id %runeWin%, ,R, 1, x%X% y%Y% NA
-            RandomSleep(50,10)
+            RandomSleep(10,10)
             ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-            RandomSleep(50,10)
+            RandomSleep(10,10)
             ControlClick, ,ahk_id %runeWin%, ,R, 1, x%X% y%Y% NA
-            RandomSleep(50,10)
+            RandomSleep(10,10)
             ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-            RandomSleep(50,10)
+            RandomSleep(10,10)
             ControlClick, ,ahk_id %runeWin%, ,R, 1, x%X% y%Y% NA
-            RandomSleep(50,10)
+            RandomSleep(10,10)
             ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
+            RandomSleep(1000)
         }
     }
 }
