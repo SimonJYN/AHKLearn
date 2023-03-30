@@ -82,8 +82,8 @@ OpenBank()
   if (FindText(X, Y, 0, 0, 1280, 960, 0, 0, FindText().PicLib("banker")))
   {
     ;再减去文本之下的空白区域 30px
-    Y += 30
-    GetRandomPos(X, Y, 80, 200, 0.5, 0)
+    Y += 50
+    GetRandomPos(X, Y, 40, 100, 0.5, 0)
     MouseClick, L, X, Y, 1
     RandomSleep(850,1200)
   }
