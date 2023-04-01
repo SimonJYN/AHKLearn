@@ -134,6 +134,7 @@ While, true{
         Else{
             FormatTime, hhmmss, T8, hh:mm:ss
             OutputDebug, "! Auto Stop , Time： " %hhmmss% " !"
+            ExitApp
         }
     }
 }
@@ -143,7 +144,8 @@ ExitApp
 InitPicLab(){
     FindText().PicLib("|<AbsorptionStatIcon>##0$0/0/A6933C,2/3/958435,-1/10/BDC4C8,4/14/647E89,-3/14/B6BFC4",1)
     FindText().PicLib("|<PurplePixel>0xFF00FF@1.00$1.k",1)
-    FindText().PicLib("|<HPNum1>0xFF0800@1.00$4.1AF4FC08",1)
+    ; FindText().PicLib("|<HPNum1>0xFF0800@1.00$4.1AF4FC08",1)
+    FindText().PicLib("|<HPNum1>*76$23.0000zzzzzzzy000A000M000k001U0E300U60108020M040U081000201k40008000M000zzzz",1)
     FindText().PicLib("|<Absorption>##0$0/0/A6933C,4/0/5B5121,0/3/A3903B,4/3/52481D,-2/10/000001,-1/26/A4B1B7,4/26/647E89,-6/25/000001,8/25/000001",1)
 }
 
