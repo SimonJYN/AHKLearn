@@ -41,9 +41,9 @@ WinMaximize, ahk_id %runeWin%
 
 InitPicLab(){
     FindText().PicLib("|<lookNorth>*151$27.zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzUV0TyCQlztrbDzZwtzyDaDznwXzxDbzzAwzznnXzwA8Dzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzw",1)
-    FindText().PicLib("|<A>0xFF00FF@1.00$6.8IWWyWWW0U",1)
-    FindText().PicLib("|<B>0xFF00FF@1.00$6.wWWwWWWw0U",1)
-    FindText().PicLib("|<C>0xFF00FF@1.00$6.AGUUUUGA0U",1)
+    FindText().PicLib("|<A>##0$0/0/FF00FF,-1/1/FF00FF,1/1/FF00FF,-2/4/FF00FF,2/4/FF00FF,0/4/FF00FF,-2/7/FF00FF,2/7/FF00FF",1)
+    FindText().PicLib("|<B>##0$0/0/FF00FF,3/0/FF00FF,0/2/FF00FF,4/2/FF00FF,0/3/FF00FF,2/3/FF00FF,3/3/FF00FF,0/5/FF00FF,4/5/FF00FF,0/7/FF00FF,3/7/FF00FF",1)
+    FindText().PicLib("|<C>##0$0/0/FF00FF,-2/-1/FF00FF,-3/0/FF00FF,-4/1/FF00FF,-4/4/FF00FF,-3/5/FF00FF,-2/6/FF00FF,0/5/FF00FF",1)
     FindText().PicLib("|<UnaggressiveTimer>##0$0/0/C4C1BC,-6/6/502725,6/7/370703,9/-1/847E77,-10/8/462221",1)
     FindText().PicLib("|<SandCrabStat>0xFFFFFF@1.00$56.A000E60084U0042E02200011000UE000EE00823WkQ42XXUF4m910l4Y2D8YEE8D8UYG94424G+F4WF0YV4WMD8Xk68DD0000000002",1)
     FindText().PicLib("|<SandyRocksTag>0xFF00FA@1.00$60.0002000000Q002000080W002000080U002000080QAQCG2X3+C2GGGG34YAE2CGGG24YAAYGGGC24Y+2MCGC22339Q00002000000000G000000000A000000000000000U",1)
@@ -86,7 +86,7 @@ While, True{
                 GetRandomPos(X, Y, 20, 20)
                 ;MouseClick, L, X, Y, 1
                 ControlClick, ,ahk_id %runeWin%, ,L, 1, x%X% y%Y% NA
-                RandomSleep(4000)
+                RandomSleep(8000)
             }
             Else{
                 OutputDebug, "找不到 SandyRocksTag "
@@ -94,6 +94,7 @@ While, True{
             RandomSleep(200)
         }
         Else{
+            RandomSleep(200)
             OutputDebug, " GoOutCombatArea "
             ;GoOutCombatArea()
             if (ok := FindText(X, Y, 0, 0, 1920, 1080, 0, 0, FindText().PicLib("A"))) {
@@ -108,6 +109,7 @@ While, True{
                 OutputDebug, "找不到 GoOutCombatArea A "
             }
 
+            RandomSleep(200)
             if (ok := FindText(X, Y, 0, 0, 1920, 1080, 0, 0, FindText().PicLib("B"))) {
                 Random, randIdx, 1, ok.Length()
                 X := ok[randIdx].x
@@ -120,6 +122,7 @@ While, True{
                 OutputDebug, "找不到 GoOutCombatArea B "
             }
 
+            RandomSleep(200)
             if (ok := FindText(X, Y, 0, 0, 1920, 1080, 0, 0, FindText().PicLib("C"))) {
                 Random, randIdx, 1, ok.Length()
                 X := ok[randIdx].x
@@ -146,6 +149,7 @@ While, True{
                 OutputDebug, "找不到 GoBackCombatArea B "
             }
 
+            RandomSleep(200)
             if (ok := FindText(X, Y, 0, 0, 1920, 1080, 0, 0, FindText().PicLib("A"))) {
                 Random, randIdx, 1, ok.Length()
                 X := ok[randIdx].x

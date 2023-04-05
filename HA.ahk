@@ -4,7 +4,7 @@
 #SingleInstance, Force
 global WinTitleOffset := 25
 global LoopCount := 0
-global TargetRunTimes := 529
+global TargetRunTimes := 641
 global SuperheatFinish := 0
 global StopLimitTime := 9000000
 
@@ -28,9 +28,9 @@ WinRestore, ahk_id %runeWin%
 WinMove, ahk_id %runeWin%, , 0, 0, 1280, 960
 RandomSleep(150)
 
-SendInput {F6 Down}
-Sleep 50
-SendInput {F6 UP}
+; SendInput {F6 Down}
+; Sleep 50
+; SendInput {F6 UP}
 
 While, LoopCount < TargetRunTimes{
     ;1080 775

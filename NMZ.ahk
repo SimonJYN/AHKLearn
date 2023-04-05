@@ -103,7 +103,7 @@ While, true{
     }
     Else{
         ;先判断是否还存在  ，如果不存在说明已经退出了NMZ，需要退出脚本
-        if (ok := FindText(X, Y, 0, 0, 100, 150, 0, 0, FindText().PicLib("AbsorptionStatIcon"))) {
+        if (ok := FindText(X, Y, 0, 0, 200, 150, 0, 0, FindText().PicLib("AbsorptionStatIcon"))) {
             RandomSleep(200, 500)
             ;判断 生命值是否是 1 ，是则继续循环，否则使用 Rock Cake （ 1217 ,887  ）
             if (ok := FindText(X, Y, 1020, 0, 1280, 150, 0, 0, FindText().PicLib("HPNum1"))) {
